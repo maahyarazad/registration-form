@@ -44,32 +44,33 @@ const RegistrationForm = () => {
         consent: false
     };
 
-    
+
     return (
         <>
-            <div className={`thank-you-message ${submitted ? "show": ""} `}>
-                <h2 style={{paddingBottom: "1em"}}>Thank you for registering!</h2>
-                <h4 style={{paddingBottom: "1em"}}>
+            <div className={`thank-you-message ${submitted ? "show" : ""} `}>
+                <h2 style={{ paddingBottom: "1em" }}>Thank you for registering!</h2>
+                <h4 style={{ paddingBottom: "1em" }}>
                     Your registration for the German Forum 2025 has been successfully received. We appreciate your interest and look forward to your participation.
                 </h4>
                 <h4 className="text-success">
                     Please remember to bring a valid ID card with you on the day of the forum for verification purposes.
                 </h4>
             </div>
-            <div className={`container-fluid registration-form-container ${submitted ? "hide": ""}`}>
-                
+            <div className={`container-fluid registration-form-container ${submitted ? "hide" : ""}`}>
+
                 <h1 className="mb-4 text-start">Participant Registration – German Forum 2025</h1>
                 <h4 className="mb-4 text-start">Date: 17th June 2025</h4>
                 <div className="row justify-content-center">
                     <div className="col-12 col-lg-10"> {/* Full width on desktop, padded on smaller screens */}
                         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-                            {({ values, setFieldValue }) => (
+                            {({ values, setFieldValue, errors, touched }) => (
                                 <Form>
                                     {/* Full Name */}
                                     <div className="row mb-3 align-items-center">
                                         <label htmlFor="fullName" className="col-sm-3 col-form-label text-start">Full Name</label>
                                         <div className="col-sm-9">
-                                            <Field name="fullName" type="text" className="form-control" />
+                                            <Field name="fullName" type="text"
+                                                className={`form-control ${errors.fullName && touched.fullName ? 'input-error' : ''}`} />
                                             <div style={{ minHeight: "22px" }} className="text-start">
 
                                                 <ErrorMessage name="fullName" component="div" className="text-danger small" />
@@ -92,10 +93,11 @@ const RegistrationForm = () => {
                                                 }}
                                                 dateFormat="yyyy-MM-dd"
                                                 placeholderText="yyyy-MM-dd"
-                                                className="form-control"
+                                                className={`form-control ${errors.fullName && touched.fullName ? 'input-error' : ''}`}
                                                 maxDate={new Date()}
                                                 showMonthDropdown
                                                 showYearDropdown
+
                                                 dropdownMode="select"
                                             />
                                             <div style={{ minHeight: "22px" }} className="text-start">
@@ -109,7 +111,8 @@ const RegistrationForm = () => {
                                     <div className="row mb-3 align-items-center">
                                         <label htmlFor="phoneNumber" className="col-sm-3 col-form-label text-start">Phone Number</label>
                                         <div className="col-sm-9">
-                                            <Field name="phoneNumber" type="tel" className="form-control"
+                                            <Field name="phoneNumber" type="tel"
+                                                className={`form-control ${errors.fullName && touched.fullName ? 'input-error' : ''}`}
                                                 pattern="^(\+?[0-9]{1,3}-)?[0-9]{3}-[0-9]{3}-[0-9]{4}$"
                                                 title="Phone number must be in the format: +1-123-456-7890 or 123-456-7890" />
                                             <div style={{ minHeight: "22px" }} className="text-start">
@@ -159,9 +162,10 @@ const RegistrationForm = () => {
                                             <div className="d-flex justify-content-end">
 
                                                 <Field
+                                                    className={`form-check-input ${errors.fullName && touched.fullName ? 'input-error' : ''}`}
                                                     name="consent"
                                                     type="checkbox"
-                                                    className="form-check-input"
+
                                                     id="consent"
                                                 />
                                             </div>
