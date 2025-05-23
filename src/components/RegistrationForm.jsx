@@ -126,7 +126,7 @@ const RegistrationForm = () => {
                                     <div className="row mb-3 align-items-center">
                                         <label htmlFor="whatsappNumber" className="col-sm-3 col-form-label text-start">WhatsApp Number</label>
                                         <div className="col-sm-9">
-                                            <Field name="whatsappNumber" type="tel" className="form-control"
+                                            <Field name="whatsappNumber" type="tel" className={`form-control ${errors.fullName && touched.fullName ? 'input-error' : ''}`} 
                                                 pattern="^(\+?[0-9]{1,3}-)?[0-9]{3}-[0-9]{3}-[0-9]{4}$"
                                                 title="Phone number must be in the format: +1-123-456-7890 or 123-456-7890" />
                                             <div style={{ minHeight: "22px" }} className="text-start">
@@ -140,7 +140,7 @@ const RegistrationForm = () => {
                                     <div className="row mb-3 align-items-center">
                                         <label htmlFor="email" className="col-sm-3 col-form-label text-start">Email</label>
                                         <div className="col-sm-9">
-                                            <Field name="email" type="email" className="form-control" />
+                                            <Field name="email" type="email" className={`form-control ${errors.fullName && touched.fullName ? 'input-error' : ''}`} />
                                             <div style={{ minHeight: "22px" }} className="text-start">
 
                                                 <ErrorMessage name="email" component="div" className="text-danger small" />
